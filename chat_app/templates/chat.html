@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Messages</title>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <style>
+        #return {
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+        #messages {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Message with {{recipient}}</h1>
+    <div id="return">
+        <form id="msg-form">
+            <input type="text" id="msg" name="msg" placeholder = "Enter Message" required>
+            <input type="submit" name="action" value="Send">
+        </form>
+        <form action="{{url_for('main.friends')}}" method="POST">
+            <input type="submit" id="return-button" name="action" value="return">
+        </form>
+    </div>
+    <div id="message_box">
+        <ul id="messages">
+            {% for messages in displaymsg %}
+                <li>{{messages.sender.username}} : {{messages.content}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <script>
+        const user1 = "{{curr_user}}";
+        const user2 = "{{recipient}}";
+    </script>
+    <script src="{{ url_for('static', filename='chat.js') }}"></script>
+</body>
+</html>

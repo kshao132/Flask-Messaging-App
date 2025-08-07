@@ -1,0 +1,32 @@
+{% extends "basesign.html" %}
+
+{% block content %}
+<h1 style = "text-align: center ;">Sign Up</h1>
+<form action="#" method="POST">
+        <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter Username" required>
+        </div>
+        {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                        {% for msg in messages %}
+                                <p><i>{{msg}}</i></p>
+                        {% endfor %}
+                {% else %}
+                        <br>
+                {% endif %}
+        {% endwith %}
+        <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter Password" required>
+        </div>
+        <p><input type="submit" name = "action" value="submit"></p>
+</form>
+        <br>
+        <form action="#" method="POST">
+                <input type="submit" name = "action" value="return">
+        </form>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

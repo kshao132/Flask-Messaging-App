@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>kshao's service chat</title>
+    <style>
+        body {
+            justify-content: center;
+            align-items: center;
+        }
+        #landing {
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #searchfriend {
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #error {
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #friendlabel {
+            font-size: 40px;
+        }
+        #friendnames {
+            font-size:25px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">{{user}}'s Friends:</h1>
+    <div id="searchfriend">
+        <form action="#" method="POST">
+            <label for="friend">Add Friend:</label>
+            <input type="input" name="friend" placeholder="Enter username" required>
+            <input type="submit" name="action" value="Enter">
+        </form>
+    </div>
+    <div id="error">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages %}
+                    <p><i>{{msg}}</i></p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <br>
+        <label id="friendlabel">Friends:</label>
+        <ul id="friendnames">
+            {% for entry in friendlist %}
+                <li><a href="{{ url_for('main.chat') }}?user={{entry.user.username}}">{{ entry.user.username }}</a></li>
+            {% endfor %}
+        </ul>
+    
+    <div id="landing">
+        <form action="#" method="POST">
+            <input type="submit" name="action" value="logout">
+        </form>
+    </div>
+    
+</body>
+</html>

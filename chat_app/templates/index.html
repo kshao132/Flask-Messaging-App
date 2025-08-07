@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home Page</title>
+    <style>
+        #wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #flashmessage {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Welcome to kshao's messaging service</h1>
+
+    <div id="wrapper">
+        <button id="signin" >Sign-In</button>  
+        <button id="signup">Sign-Up</button>
+    </div>
+    <div id="flashmessage">
+        {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for msg in messages %}
+                        <p><i>{{msg}}</i></p>
+                    {% endfor %}
+                {% endif %}
+        {% endwith %}
+    </div>
+
+    <script>
+        document.getElementById('signin').onclick = function () {
+            window.location.href= "{{ url_for('main.sign_in') }}";
+        };
+
+        document.getElementById('signup').onclick = function () {
+            window.location.href="{{ url_for('main.sign_up') }}"
+        };
+    </script>
+</body>
+</html>
