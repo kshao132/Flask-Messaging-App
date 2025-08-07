@@ -1,7 +1,7 @@
 let curr_room = null;
 
 document.addEventListener("DOMContentLoaded", () => {
-    const socket = io("https://flask-messaging-app.onrender.com:");
+    const socket = io("https://flask-messaging-app.onrender.com");
     
 
     socket.emit('join', {
