@@ -9,8 +9,11 @@ def create_app():
     app = Flask(__name__)
     app.config["SECRET_KEY"] = 'secret!'
     app.config["DEBUG"] = True
+
+    basedir = os.path.abspath(os.path.dirname(__file__))
+    sqlite_path = os.path.join(basedir, "..", "instance", "users.sqlite3")
     
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL") or "sqlite:///instance/users.db"
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL") or f"sqlite:///{sqlite_path}"
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     app.register_blueprint(main)

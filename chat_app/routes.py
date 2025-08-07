@@ -93,6 +93,7 @@ def friends():
 
 @main.route('/chat', methods=['POST', 'GET'])
 def chat():
+    print("ON CHAT")
     if request.method == "POST":
         return redirect(url_for('main.friends'))
     else:
