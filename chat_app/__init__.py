@@ -10,7 +10,7 @@ def create_app():
     app.config["SECRET_KEY"] = 'secret!'
     app.config["DEBUG"] = True
     
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URI") or "sqlite:///instance/users.db"
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL") or "sqlite:///instance/users.db"
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     app.register_blueprint(main)
