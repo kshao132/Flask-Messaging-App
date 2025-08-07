@@ -1,6 +1,9 @@
+import eventlet
+eventlet.monkey_patch()
+
 from flask_socketio import SocketIO
 from flask_sqlalchemy import SQLAlchemy
 
-socketio = SocketIO()
+socketio = SocketIO(cors_allowed_origins="*", async_mode="eventlet")
 
 db = SQLAlchemy()
